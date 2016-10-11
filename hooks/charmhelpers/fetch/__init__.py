@@ -18,9 +18,8 @@ import os
 CLOUD_ARCHIVE = """# Ubuntu Cloud Archive
 deb http://ubuntu-cloud.archive.canonical.com/ubuntu {} main
 """
-PROPOSED_POCKET = """# Proposed
-deb http://archive.ubuntu.com/ubuntu {}-proposed main universe multiverse restricted
-"""
+PROPOSED_POCKET = ('# Proposed deb http://archive.ubuntu.com/ubuntu'
+                   ' {}-proposed main universe multiverse restricted')
 CLOUD_ARCHIVE_POCKETS = {
     # Folsom
     'folsom': 'precise-updates/folsom',

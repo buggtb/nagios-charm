@@ -107,8 +107,13 @@ def apply_relation_config(relid, units):
         if type(monitors) != dict:
             monitors = yaml.safe_load(monitors)
 
+        if relation_settings.get('charm_platform'):
+            platform = relation_settings.get('charm_platform')
+        else:
+            platform = 'ubuntu'
+
         # Output nagios config
-        host = get_pynag_host(target_id)
+        host = get_pynag_host(target_id, platform)
 
         if not target_address:
             raise Exception("No Target Address provied by NRPE service!")

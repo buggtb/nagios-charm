@@ -34,7 +34,10 @@ def service_restart(service_name):
 
 
 def service_reload(service_name, restart_on_failure=False):
-    """Reload a system service, optionally falling back to restart if reload fails"""
+    """Reload a system service.
+
+    Optionally falling back to restart if reload fails
+    """
     service_result = service('reload', service_name)
     if not service_result and restart_on_failure:
         service_result = service('restart', service_name)
