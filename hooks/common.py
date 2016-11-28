@@ -260,7 +260,8 @@ def get_pynag_host(target_id, platform, owner_unit=None, owner_relation=None):
         except Exception:
             import_platform = importlib.import_module("ubuntu", CHARM_CFG)
             host = import_platform.update_host(target_id)
-    apply_host_policy(target_id, owner_unit, owner_relation)
+    if platform != 'windows':
+        apply_host_policy(target_id, owner_unit, owner_relation)
     return host
 
 
