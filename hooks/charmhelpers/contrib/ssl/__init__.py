@@ -2,7 +2,8 @@ import subprocess
 from charmhelpers.core import hookenv
 
 
-def generate_selfsigned(keyfile, certfile, keysize="1024", config=None, subject=None, cn=None):
+def generate_selfsigned(keyfile, certfile, keysize="1024",
+                        config=None, subject=None, cn=None):
     """Generate selfsigned SSL keypair
 
     You must provide one of the 3 optional arguments:
@@ -46,7 +47,8 @@ def generate_selfsigned(keyfile, certfile, keysize="1024", config=None, subject=
         if "organization" in subject:
             ssl_subject = ssl_subject + "/O={}".format(subject["organization"])
         if "organizational_unit" in subject:
-            ssl_subject = ssl_subject + "/OU={}".format(subject["organizational_unit"])
+            ssl_subject = ssl_subject + "/OU={}".format(
+                subject["organizational_unit"])
         if "cn" in subject:
             ssl_subject = ssl_subject + "/CN={}".format(subject["cn"])
         else:
@@ -54,7 +56,8 @@ def generate_selfsigned(keyfile, certfile, keysize="1024", config=None, subject=
                         "provide \"cn\" field at very least")
             return False
         if "email" in subject:
-            ssl_subject = ssl_subject + "/emailAddress={}".format(subject["email"])
+            ssl_subject = ssl_subject + "/emailAddress={}".format(
+                subject["email"])
 
         cmd = ["/usr/bin/openssl", "req", "-new", "-newkey",
                "rsa:{}".format(keysize), "-days", "365", "-nodes", "-x509",
